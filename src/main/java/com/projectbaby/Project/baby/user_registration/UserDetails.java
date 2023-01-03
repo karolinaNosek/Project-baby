@@ -1,4 +1,4 @@
-package com.projectbaby.Project.baby.UserRegistration;
+package com.projectbaby.Project.baby.user_registration;
 
 
 public class UserDetails {

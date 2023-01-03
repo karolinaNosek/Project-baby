@@ -1,6 +1,8 @@
-package com.projectbaby.Project.baby.Model;
+package com.projectbaby.Project.baby.model;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 
 @Entity
 @Table (name = "babies")
@@ -12,7 +14,7 @@ public class Baby {
     @Column (name = "name")
     private String name;
     @Column (name = "date_of_birth")
-    private String dob;
+    private LocalDate dateOfBirth;
     @Column (name = "sex")
     private String sex;
     @Column (name = "height")
@@ -25,10 +27,10 @@ public class Baby {
     super ();
     }
 
-    public Baby(int id, String name, String dob, String sex, int height, int weight) {
+    public Baby(int id, String name, LocalDate dateOfBirth, String sex, int height, int weight) {
         this.id = id;
         this.name = name;
-        this.dob = dob;
+        this.dateOfBirth = dateOfBirth;
         this.sex = sex;
         this.height = height;
         this.weight = weight;
@@ -46,12 +48,12 @@ public class Baby {
         this.name = name;
     }
 
-    public String getDob() {
-        return dob;
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDob(String dob) {
-        this.dob = dob;
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getSex() {
