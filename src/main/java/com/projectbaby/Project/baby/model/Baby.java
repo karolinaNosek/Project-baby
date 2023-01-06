@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 @Data
-@AllArgsConstructor (access= AccessLevel.PUBLIC)
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table (name = "babies")
@@ -16,7 +16,7 @@ public class Baby {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
     @Column (name = "name")
     private String name;
     @Column (name = "date_of_birth")

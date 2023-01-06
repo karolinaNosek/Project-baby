@@ -1,6 +1,5 @@
 package com.projectbaby.Project.baby.service;
 
-import com.projectbaby.Project.baby.baby_controller.BabyController;
 import com.projectbaby.Project.baby.model.Baby;
 import com.projectbaby.Project.baby.repository.BabyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,11 @@ import java.util.List;
 @Service
 public class BabyService {
 
-    @Autowired
-    BabyRepository babyRepository;
+    private BabyRepository babyRepository;
+
+    public BabyService (BabyRepository babyRepository){
+        this.babyRepository = babyRepository;
+    }
 
     public List<Baby> getAllBabies(){
         List<Baby> allBabies = babyRepository.findAll();
@@ -34,7 +36,7 @@ public class BabyService {
         babyById.setSex(updatedBaby.getSex());
         babyById.setHeight(updatedBaby.getHeight());
         babyById.setWeight(updatedBaby.getWeight());
-        return save(updatedBaby);
+        return babyRepository.save(updatedBaby);
     }
 
     public Baby delete (int id) {

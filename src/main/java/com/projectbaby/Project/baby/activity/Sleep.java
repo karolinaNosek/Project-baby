@@ -5,7 +5,7 @@ import lombok.*;
 import java.time.LocalTime;
 @Data
 @NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor
 public class Sleep extends AbstractActivity {
     private String nap;
     private String deepSleep;

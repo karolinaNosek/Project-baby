@@ -5,7 +5,7 @@ import lombok.*;
 import java.time.LocalTime;
 @Data
 @NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor
 public class Bath extends AbstractActivity {
     private String eveningBath;
 
