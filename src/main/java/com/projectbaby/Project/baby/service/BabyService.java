@@ -2,7 +2,7 @@ package com.projectbaby.Project.baby.service;
 
 import com.projectbaby.Project.baby.model.Baby;
 import com.projectbaby.Project.baby.repository.BabyRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class BabyService {
     }
 
     public Baby save(Baby baby) {
-        return save(baby);
+       return babyRepository.save(baby);
     }
 
     public Baby update (int id, Baby updatedBaby) {
@@ -39,7 +39,8 @@ public class BabyService {
         return babyRepository.save(updatedBaby);
     }
 
-    public Baby delete (int id) {
-        return delete(id);
+    public void delete (int id) {
+//       return babyRepository.delete(id);
+               // czy cso powinna zwrócić metoda delete? no nie, dlatego void.
     }
 }

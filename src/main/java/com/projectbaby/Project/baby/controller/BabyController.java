@@ -2,7 +2,6 @@ package com.projectbaby.Project.baby.controller;
 
 import com.projectbaby.Project.baby.model.Baby;
 import com.projectbaby.Project.baby.service.BabyService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +17,6 @@ public class BabyController {
         this.babyService = babyService;
     }
 
-    //create get all babies api
     @GetMapping("/")
     public ResponseEntity<List> getAllBabies() {
         return ResponseEntity.ok(babyService.getAllBabies());
@@ -42,7 +40,7 @@ public class BabyController {
         return ResponseEntity.ok(babyService.update(id, updatedBaby));
     }
 
-    //delete baby by name
+    //delete baby by id
     @DeleteMapping ("/{id}")
     public ResponseEntity<Baby> delete (@PathVariable(value = "id") int id) {
         babyService.delete(id);
