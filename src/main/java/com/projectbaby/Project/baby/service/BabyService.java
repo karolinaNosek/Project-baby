@@ -12,35 +12,39 @@ public class BabyService {
 
     private BabyRepository babyRepository;
 
-    public BabyService (BabyRepository babyRepository){
+    public BabyService(BabyRepository babyRepository) {
         this.babyRepository = babyRepository;
     }
 
-    public List<Baby> getAllBabies(){
+    public List<Baby> getAllBabies() {
         List<Baby> allBabies = babyRepository.findAll();
         return allBabies;
     }
 
-    public Baby getBabyById (int id) {
-        Baby babyById = babyRepository.findById(id).orElseThrow(()->new IllegalArgumentException());
+    public Baby getBabyById(int id) {
+        Baby babyById = babyRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
         return babyById;
     }
 
     public Baby save(Baby baby) {
-       return babyRepository.save(baby);
+        return babyRepository.save(baby);
     }
 
-    public Baby update (int id, Baby updatedBaby) {
-        Baby babyById = babyRepository.findById(id).orElseThrow(()->new IllegalArgumentException());
+    public Baby update(int id, Baby updatedBaby) {
+        Baby babyById = babyRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
         babyById.setName(updatedBaby.getName());
         babyById.setSex(updatedBaby.getSex());
         babyById.setHeight(updatedBaby.getHeight());
         babyById.setWeight(updatedBaby.getWeight());
-        return babyRepository.save(updatedBaby);
+        return babyRepository.save(babyById);
     }
 
-    public void delete (int id) {
-//       return babyRepository.delete(id);
-               // czy cso powinna zwrócić metoda delete? no nie, dlatego void.
+    public void delete(int id) {
+        if (babyRepository.existsById(id)) {
+            babyRepository.deleteById(id);
+        } else {
+            throw new IllegalArgumentException();
+        }
+
     }
 }

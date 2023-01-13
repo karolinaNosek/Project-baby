@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 @Data
@@ -20,6 +21,7 @@ public class Baby {
     @Column (name = "name")
     private String name;
     @Column (name = "date_of_birth")
+    @DateTimeFormat (iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateOfBirth;
     @Column (name = "sex")
     private String sex;

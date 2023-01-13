@@ -11,19 +11,19 @@ import java.util.List;
 @RequestMapping ("/api/v1/babies")
 public class BabyController {
 
-    private BabyService babyService;
+    private final BabyService babyService;
 
     public BabyController (BabyService babyService){
         this.babyService = babyService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List> getAllBabies() {
         return ResponseEntity.ok(babyService.getAllBabies());
     }
 
     //create baby
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<Baby> createBaby(@RequestBody Baby baby) {
         return ResponseEntity.ok(babyService.save(baby));
     }
@@ -42,7 +42,7 @@ public class BabyController {
 
     //delete baby by id
     @DeleteMapping ("/{id}")
-    public ResponseEntity<Baby> delete (@PathVariable(value = "id") int id) {
+    public ResponseEntity<Void> delete (@PathVariable(value = "id") int id) {
         babyService.delete(id);
         return ResponseEntity.ok().build();
     }
