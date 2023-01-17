@@ -1,5 +1,6 @@
 package com.projectbaby.Project.baby.activity;
 
+import jakarta.persistence.Entity;
 import lombok.*;
 
 import java.time.LocalTime;

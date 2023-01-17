@@ -114,3 +114,7 @@ Wrong user name or password [28000-214]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
 	... 50 more
+2023-01-16 19:12:36 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "SELECT * FROM USERS BABIES [*]BABIES BABIES"
+Syntax error in SQL statement "SELECT * FROM USERS BABIES [*]BABIES BABIES"; SQL statement:
+SELECT * FROM USERS BABIES BABIES BABIES [42000-214]

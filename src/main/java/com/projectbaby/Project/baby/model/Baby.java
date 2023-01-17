@@ -1,7 +1,6 @@
 package com.projectbaby.Project.baby.model;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,9 +19,9 @@ public class Baby {
     private Integer id;
     @Column (name = "name")
     private String name;
-    @Column (name = "date_of_birth")
-    @DateTimeFormat (iso = DateTimeFormat.ISO.DATE)
-    private LocalDate dateOfBirth;
+//    @Column (name = "date_of_birth")
+//    @DateTimeFormat (iso = DateTimeFormat.ISO.DATE)
+//    private LocalDate dateOfBirth;
     @Column (name = "sex")
     private String sex;
     @Column (name = "height")

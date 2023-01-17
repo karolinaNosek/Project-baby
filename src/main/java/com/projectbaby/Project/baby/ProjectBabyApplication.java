@@ -10,7 +10,6 @@ public class ProjectBabyApplication {
 		SpringApplication.run(ProjectBabyApplication.class, args);
 
 
-
 	}
 
 }
