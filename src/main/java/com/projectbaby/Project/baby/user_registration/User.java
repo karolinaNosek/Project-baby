@@ -15,18 +15,21 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private long id;
 
     @Column (name = "username")
     @NonNull
+    @OneToOne
     private String username;
 
     @Column (name = "email")
     @NonNull
+    @OneToOne
     private String email;
 
     @Column (name = "password")
     @NonNull
+    @OneToOne
     private String password;
 
 

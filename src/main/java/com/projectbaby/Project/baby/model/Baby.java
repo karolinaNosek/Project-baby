@@ -4,9 +4,13 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,18 +20,30 @@ public class Baby {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private Integer id;
-    @Column (name = "name")
+    private long id;
+
+    @Column (name = "baby_name")
+    @NonNull
+    @OneToOne
     private String name;
-//    @Column (name = "date_of_birth")
+
+//    @Column (name = "baby_date_of_birth")
 //    @DateTimeFormat (iso = DateTimeFormat.ISO.DATE)
 //    private LocalDate dateOfBirth;
-    @Column (name = "sex")
-    private String sex;
-    @Column (name = "height")
-    private int height;
-    @Column (name = "weight")
-    private int weight;
 
+    @Column (name = "baby_sex")
+    @NonNull
+    @OneToOne
+    private String sex;
+
+    @Column (name = "baby_height")
+    @NonNull
+    @OneToOne
+    private int height;
+
+    @Column (name = "baby_weight")
+    @NonNull
+    @OneToOne
+    private int weight;
 
 }
