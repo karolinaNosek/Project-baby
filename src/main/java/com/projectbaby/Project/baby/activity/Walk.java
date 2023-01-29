@@ -1,5 +1,6 @@
 package com.projectbaby.Project.baby.activity;
 
+import com.projectbaby.Project.baby.model.Baby;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,12 +10,10 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Entity
 @Table(name="activities")
-public class Walk extends AbstractActivity {
+public class Walk extends Activity {
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private String playground;
 
-    @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private String park;
 
     public Walk(String activityName, LocalTime activityStartTime, LocalTime activityEndTime) {

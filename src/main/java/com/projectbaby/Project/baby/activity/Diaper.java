@@ -9,12 +9,10 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Entity
 @Table(name="activities")
-public class Diaper extends AbstractActivity {
+public class Diaper extends Activity {
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private String pee;
 
-    @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private String poo;
 
     public Diaper(String activityName, LocalTime activityStartTime, LocalTime activityEndTime) {

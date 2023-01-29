@@ -1,15 +1,13 @@
 package com.projectbaby.Project.baby.model;
 
+import com.projectbaby.Project.baby.activity.Activity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -24,7 +22,6 @@ public class Baby {
 
     @Column (name = "baby_name")
     @NonNull
-    @OneToOne
     private String name;
 
 //    @Column (name = "baby_date_of_birth")
@@ -33,17 +30,17 @@ public class Baby {
 
     @Column (name = "baby_sex")
     @NonNull
-    @OneToOne
     private String sex;
 
     @Column (name = "baby_height")
     @NonNull
-    @OneToOne
     private int height;
 
     @Column (name = "baby_weight")
     @NonNull
-    @OneToOne
     private int weight;
+
+    @OneToMany (mappedBy = "baby")
+    List<Activity> activities;
 
 }

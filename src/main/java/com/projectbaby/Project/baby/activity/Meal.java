@@ -9,18 +9,16 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Entity
 @Table(name="activities")
-public class Meal extends AbstractActivity {
+public class Meal extends Activity {
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private String breastFeeding;
 
-    @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private String modificatedMilk;
 
-    @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private String solidMeals;
 
     public Meal(String activityName, LocalTime activityStartTime, LocalTime activityEndTime) {
         super(activityName, activityStartTime, activityEndTime);
+
     }
 }

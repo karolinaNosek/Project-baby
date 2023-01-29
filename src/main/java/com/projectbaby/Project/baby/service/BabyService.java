@@ -22,7 +22,7 @@ public class BabyService {
     }
 
     public Baby getBabyById(int id) {
-        Baby babyById = babyRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        Baby babyById = babyRepository.findById((long) id).orElseThrow(() -> new IllegalArgumentException());
         return babyById;
     }
 
@@ -31,7 +31,7 @@ public class BabyService {
     }
 
     public Baby update(int id, Baby updatedBaby) {
-        Baby babyById = babyRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        Baby babyById = babyRepository.findById((long) id).orElseThrow(() -> new IllegalArgumentException());
         babyById.setName(updatedBaby.getName());
         babyById.setSex(updatedBaby.getSex());
         babyById.setHeight(updatedBaby.getHeight());
@@ -40,8 +40,8 @@ public class BabyService {
     }
 
     public void delete(int id) {
-        if (babyRepository.existsById(id)) {
-            babyRepository.deleteById(id);
+        if (babyRepository.existsById((long) id)) {
+            babyRepository.deleteById((long) id);
         } else {
             throw new IllegalArgumentException();
         }

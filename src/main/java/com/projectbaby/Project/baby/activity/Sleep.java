@@ -9,12 +9,10 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Entity
 @Table(name="activities")
-public class Sleep extends AbstractActivity {
+public class Sleep extends Activity {
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private String nap;
 
-    @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private String deepSleep;
 
     public Sleep(String activityName, LocalTime activityStartTime, LocalTime activityEndTime) {

@@ -9,9 +9,8 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Entity
 @Table (name="activities")
-public class Bath extends AbstractActivity {
+public class Bath extends Activity {
 
-    @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private String eveningBath;
 
     public Bath(String activityName, LocalTime activityStartTime, LocalTime activityEndTime) {
