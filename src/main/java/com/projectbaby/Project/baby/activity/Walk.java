@@ -9,7 +9,6 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="activities")
 public class Walk extends Activity {
 
     private String playground;
