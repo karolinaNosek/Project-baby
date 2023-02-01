@@ -19,17 +19,14 @@ public class User {
 
     @Column (name = "username")
     @NonNull
-    @OneToOne
     private String username;
 
     @Column (name = "email")
     @NonNull
-    @OneToOne
     private String email;
 
     @Column (name = "password")
     @NonNull
-    @OneToOne
     private String password;
 
 

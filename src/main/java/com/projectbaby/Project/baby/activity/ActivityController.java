@@ -11,11 +11,9 @@ import java.util.List;
 public class ActivityController {
 
     private ActivityService activityService;
-    private BabyRepository babyRepository;
 
-    public ActivityController(ActivityService activityService, BabyRepository babyRepository) {
+    public ActivityController(ActivityService activityService) {
         this.activityService = activityService;
-        this.babyRepository = babyRepository;
     }
 
 

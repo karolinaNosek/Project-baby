@@ -8,7 +8,6 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="activities")
 public class Play extends Activity {
 
     private String manipulativeGames;

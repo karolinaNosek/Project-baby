@@ -8,7 +8,6 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="activities")
 public class Diaper extends Activity {
 
     private String pee;

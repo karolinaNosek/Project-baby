@@ -8,7 +8,6 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="activities")
 public class Sleep extends Activity {
 
     private String nap;
