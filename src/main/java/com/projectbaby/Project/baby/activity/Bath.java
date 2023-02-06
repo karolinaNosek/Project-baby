@@ -12,8 +12,6 @@ public class Bath extends Activity {
 
     private String eveningBath;
 
-    public Bath(String activityName, LocalTime activityStartTime, LocalTime activityEndTime) {
-        super(activityName, activityStartTime, activityEndTime);
-    }
+
 }
 

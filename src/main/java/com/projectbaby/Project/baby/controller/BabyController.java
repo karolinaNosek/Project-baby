@@ -21,26 +21,18 @@ public class BabyController {
     public ResponseEntity<List> getAllBabies() {
         return ResponseEntity.ok(babyService.getAllBabies());
     }
-
-    //create baby
     @PostMapping
     public ResponseEntity<Baby> createBaby(@RequestBody Baby baby) {
         return ResponseEntity.ok(babyService.save(baby));
     }
-
-    //get baby by id
     @GetMapping("/{id}")
     public ResponseEntity<Baby> getBabyById (@PathVariable(value = "id") int id) {
         return ResponseEntity.ok(babyService.getBabyById(id));
     }
-
-    //update baby
     @PutMapping ("/{id}")
     public ResponseEntity<Baby> update(@PathVariable(value = "id") int id, @RequestBody Baby updatedBaby){
         return ResponseEntity.ok(babyService.update(id, updatedBaby));
     }
-
-    //delete baby by id
     @DeleteMapping ("/{id}")
     public ResponseEntity<Void> delete (@PathVariable(value = "id") int id) {
         babyService.delete(id);

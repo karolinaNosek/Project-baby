@@ -16,8 +16,4 @@ public class Meal extends Activity {
 
     private String solidMeals;
 
-    public Meal(String activityName, LocalTime activityStartTime, LocalTime activityEndTime) {
-        super(activityName, activityStartTime, activityEndTime);
-
-    }
 }

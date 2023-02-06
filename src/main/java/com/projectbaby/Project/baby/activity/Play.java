@@ -20,7 +20,4 @@ public class Play extends Activity {
 
     private String rhytmAndMovementGames;
 
-    public Play(String activityName, LocalTime activityStartTime, LocalTime activityEndTime) {
-        super(activityName, activityStartTime, activityEndTime);
-    }
 }

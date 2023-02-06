@@ -14,7 +14,4 @@ public class Diaper extends Activity {
 
     private String poo;
 
-    public Diaper(String activityName, LocalTime activityStartTime, LocalTime activityEndTime) {
-        super(activityName, activityStartTime, activityEndTime);
-    }
 }

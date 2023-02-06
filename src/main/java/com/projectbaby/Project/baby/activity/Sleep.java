@@ -14,8 +14,5 @@ public class Sleep extends Activity {
 
     private String deepSleep;
 
-    public Sleep(String activityName, LocalTime activityStartTime, LocalTime activityEndTime) {
-        super(activityName, activityStartTime, activityEndTime);
-    }
 }
 

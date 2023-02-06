@@ -1,12 +1,15 @@
 package com.projectbaby.Project.baby.model;
 
 import com.projectbaby.Project.baby.activity.Activity;
+import com.projectbaby.Project.baby.user_registration.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -18,29 +21,25 @@ public class Baby {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
-    @Column (name = "baby_name")
     @NonNull
     private String name;
 
-//    @Column (name = "baby_date_of_birth")
-//    @DateTimeFormat (iso = DateTimeFormat.ISO.DATE)
+//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 //    private LocalDate dateOfBirth;
 
-    @Column (name = "baby_sex")
     @NonNull
     private String sex;
 
-    @Column (name = "baby_height")
     @NonNull
     private int height;
 
-    @Column (name = "baby_weight")
     @NonNull
     private int weight;
 
     @OneToMany (mappedBy = "baby")
-    List<Activity> activities;
+    private List<Activity> activities;
+
 
 }

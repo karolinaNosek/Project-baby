@@ -1,5 +1,6 @@
 package com.projectbaby.Project.baby.user_registration;
 
+import com.projectbaby.Project.baby.model.Baby;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +29,8 @@ public class User {
     @Column (name = "password")
     @NonNull
     private String password;
+
+
 
 
 }

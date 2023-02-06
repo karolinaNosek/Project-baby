@@ -12,7 +12,7 @@ import java.time.LocalTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity (name="activities")
+@Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn (name="ACTIVITY_TYPE", discriminatorType=DiscriminatorType.STRING)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
@@ -30,7 +30,7 @@ public abstract class Activity {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     private String activityName;
     private LocalTime activityStartTime;
     private LocalTime activityEndTime;
@@ -39,7 +39,5 @@ public abstract class Activity {
     @JoinColumn (name="baby_id")
     private Baby baby;
 
-    public Activity(String activityName, LocalTime activityStartTime, LocalTime activityEndTime) {
 
-    }
 }

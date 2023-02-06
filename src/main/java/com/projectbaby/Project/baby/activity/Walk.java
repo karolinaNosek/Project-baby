@@ -15,7 +15,4 @@ public class Walk extends Activity {
 
     private String park;
 
-    public Walk(String activityName, LocalTime activityStartTime, LocalTime activityEndTime) {
-        super(activityName, activityStartTime, activityEndTime);
-    }
 }
