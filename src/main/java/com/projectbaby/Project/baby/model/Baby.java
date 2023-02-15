@@ -5,7 +5,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -22,8 +25,8 @@ public class Baby {
     @NonNull
     private String name;
 
-//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-//    private LocalDate dateOfBirth;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate dateOfBirth;
 
     @NonNull
     private String sex;
