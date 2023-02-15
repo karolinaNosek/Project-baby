@@ -9,9 +9,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Entity
 public class Diaper extends Activity {
-
     private String pee;
-
     private String poo;
 
 }

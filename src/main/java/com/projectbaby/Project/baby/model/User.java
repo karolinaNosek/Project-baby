@@ -1,11 +1,10 @@
-package com.projectbaby.Project.baby.user_registration;
+package com.projectbaby.Project.baby.model;
 
-import com.projectbaby.Project.baby.model.Baby;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import org.springframework.lang.NonNull;
 
 @Data
 @AllArgsConstructor
@@ -18,15 +17,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column (name = "username")
     @NonNull
     private String username;
 
-    @Column (name = "email")
     @NonNull
     private String email;
 
-    @Column (name = "password")
     @NonNull
     private String password;
 

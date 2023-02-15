@@ -9,11 +9,8 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Entity
 public class Meal extends Activity {
-
     private String breastFeeding;
-
     private String modificatedMilk;
-
     private String solidMeals;
 
 }

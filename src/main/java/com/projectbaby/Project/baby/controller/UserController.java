@@ -1,6 +1,7 @@
-package com.projectbaby.Project.baby.user_registration;
+package com.projectbaby.Project.baby.controller;
 
-import org.springframework.http.HttpStatus;
+import com.projectbaby.Project.baby.model.User;
+import com.projectbaby.Project.baby.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

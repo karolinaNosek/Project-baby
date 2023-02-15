@@ -9,9 +9,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Entity
 public class Bath extends Activity {
-
     private String eveningBath;
-
 
 }
 

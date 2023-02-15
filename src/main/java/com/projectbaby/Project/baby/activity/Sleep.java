@@ -9,9 +9,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Entity
 public class Sleep extends Activity {
-
     private String nap;
-
     private String deepSleep;
 
 }

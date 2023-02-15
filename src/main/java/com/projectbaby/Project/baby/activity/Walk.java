@@ -10,9 +10,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Entity
 public class Walk extends Activity {
-
     private String playground;
-
     private String park;
 
 }

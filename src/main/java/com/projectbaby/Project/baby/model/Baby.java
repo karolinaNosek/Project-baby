@@ -1,15 +1,11 @@
 package com.projectbaby.Project.baby.model;
 
 import com.projectbaby.Project.baby.activity.Activity;
-import com.projectbaby.Project.baby.user_registration.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.time.LocalDate;
+import org.springframework.lang.NonNull;
 import java.util.List;
 
 @Data

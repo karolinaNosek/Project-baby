@@ -1,5 +1,7 @@
-package com.projectbaby.Project.baby.user_registration;
+package com.projectbaby.Project.baby.service;
 
+import com.projectbaby.Project.baby.model.User;
+import com.projectbaby.Project.baby.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

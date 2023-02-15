@@ -1,9 +1,10 @@
-package com.projectbaby.Project.baby.activity;
+package com.projectbaby.Project.baby.service;
 
+import com.projectbaby.Project.baby.activity.Activity;
+import com.projectbaby.Project.baby.repository.ActivityRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ActivityService {

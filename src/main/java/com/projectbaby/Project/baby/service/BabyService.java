@@ -2,7 +2,6 @@ package com.projectbaby.Project.baby.service;
 
 import com.projectbaby.Project.baby.model.Baby;
 import com.projectbaby.Project.baby.repository.BabyRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

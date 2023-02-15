@@ -9,15 +9,10 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Entity
 public class Play extends Activity {
-
     private String manipulativeGames;
-
     private String constructionGames;
-
     private String sensoryGames;
-
     private String socialGames;
-
     private String rhytmAndMovementGames;
 
 }
