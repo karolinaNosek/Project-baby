@@ -2,11 +2,13 @@ package com.projectbaby.Project.baby.model;
 
 import com.projectbaby.Project.baby.activity.Activity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.lang.NonNull;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,23 +24,32 @@ public class Baby {
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id;
 
-    @NonNull
+    @Size(min=2, max=30)
+    @NotNull
     private String name;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @DateTimeFormat(pattern = "MM/DD/YYYY")
+    @Past
+    @NotNull
     private LocalDate dateOfBirth;
 
-    @NonNull
+    @NotNull
     private String sex;
 
-    @NonNull
+    @NotNull
+    @Size(min=40, max=150) // height unit is centimeters
     private int height;
 
-    @NonNull
+    @NotNull
+    @Size(min=1000, max=15000) // weight unit is grams
     private int weight;
 
     @OneToMany (mappedBy = "baby")
     private List<Activity> activities;
+
+    @OneToOne (fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn (name="user_id")
+    private User user;
 
 
 }
