@@ -1,5 +1,6 @@
 package com.projectbaby.Project.baby.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.projectbaby.Project.baby.activity.Activity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -8,7 +9,6 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -28,7 +28,7 @@ public class Baby {
     @NotNull
     private String name;
 
-    @DateTimeFormat(pattern = "MM/DD/YYYY")
+    @JsonFormat(pattern = "MM/DD/YYYY")
     @Past
     @NotNull
     private LocalDate dateOfBirth;

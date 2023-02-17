@@ -7,6 +7,7 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface ActivityMapper {
     ActivityDTO mapToActivityDto (Activity activity);
+
     Activity mapToActivity (ActivityDTO activityDTO);
 
 }
