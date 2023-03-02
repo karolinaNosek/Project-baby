@@ -1,6 +1,6 @@
 package com.projectbaby.Project.baby.service;
 
-import com.projectbaby.Project.baby.activity.Activity;
+import com.projectbaby.Project.baby.model.entity.activity.Activity;
 import com.projectbaby.Project.baby.repository.ActivityRepository;
 import org.springframework.stereotype.Service;
 

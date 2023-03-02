@@ -1,8 +1,9 @@
-package com.projectbaby.Project.baby.model;
+package com.projectbaby.Project.baby.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.projectbaby.Project.baby.activity.Activity;
+import com.projectbaby.Project.baby.model.entity.activity.Activity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
@@ -25,22 +26,19 @@ public class Baby {
     private Long id;
 
     @Size(min=2, max=30)
-    @NotNull
+    @NotBlank
     private String name;
 
     @JsonFormat(pattern = "MM/DD/YYYY")
     @Past
-    @NotNull
     private LocalDate dateOfBirth;
 
-    @NotNull
+    @NotBlank
     private String sex;
 
-    @NotNull
     @Size(min=40, max=150) // height unit is centimeters
     private int height;
 
-    @NotNull
     @Size(min=1000, max=15000) // weight unit is grams
     private int weight;
 

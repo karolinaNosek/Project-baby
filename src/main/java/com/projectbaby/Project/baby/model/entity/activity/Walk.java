@@ -1,10 +1,8 @@
-package com.projectbaby.Project.baby.activity;
+package com.projectbaby.Project.baby.model.entity.activity;
 
-import com.projectbaby.Project.baby.model.Baby;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

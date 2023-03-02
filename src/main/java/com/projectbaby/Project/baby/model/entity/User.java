@@ -1,10 +1,7 @@
-package com.projectbaby.Project.baby.model;
+package com.projectbaby.Project.baby.model.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,14 +17,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotNull
+    @NotBlank
     private String username;
 
     @Email
-    @NotNull
     private String email;
 
-    @NotNull
+    @NotBlank
     @Min(value = 6, message = "Password should be at least 6 characters")
     @Max(value = 12, message = "Password should not be greater than 12 characters")
     private String password;

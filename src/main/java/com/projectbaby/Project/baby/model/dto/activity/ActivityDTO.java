@@ -1,4 +1,4 @@
-package com.projectbaby.Project.baby.dto;
+package com.projectbaby.Project.baby.model.dto.activity;
 
 import lombok.Data;
 

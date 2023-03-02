@@ -1,7 +1,7 @@
 package com.projectbaby.Project.baby.mapper;
 
-import com.projectbaby.Project.baby.activity.Walk;
-import com.projectbaby.Project.baby.dto.WalkDTO;
+import com.projectbaby.Project.baby.model.entity.activity.Walk;
+import com.projectbaby.Project.baby.model.dto.activity.WalkDTO;
 import org.mapstruct.Mapper;
 
 @Mapper

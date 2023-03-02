@@ -1,8 +1,8 @@
-package com.projectbaby.Project.baby.activity;
+package com.projectbaby.Project.baby.model.entity.activity;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.projectbaby.Project.baby.model.Baby;
+import com.projectbaby.Project.baby.model.entity.Baby;
 import jakarta.persistence.*;
 import lombok.*;
 

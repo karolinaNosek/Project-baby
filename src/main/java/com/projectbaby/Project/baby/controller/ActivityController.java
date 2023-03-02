@@ -1,6 +1,6 @@
 package com.projectbaby.Project.baby.controller;
 
-import com.projectbaby.Project.baby.activity.Activity;
+import com.projectbaby.Project.baby.model.entity.activity.Activity;
 import com.projectbaby.Project.baby.service.ActivityService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

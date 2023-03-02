@@ -1,7 +1,7 @@
 package com.projectbaby.Project.baby.mapper;
 
-import com.projectbaby.Project.baby.activity.Meal;
-import com.projectbaby.Project.baby.dto.MealDTO;
+import com.projectbaby.Project.baby.model.entity.activity.Meal;
+import com.projectbaby.Project.baby.model.dto.activity.MealDTO;
 import org.mapstruct.Mapper;
 
 @Mapper

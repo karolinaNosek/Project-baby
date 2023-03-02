@@ -1,4 +1,4 @@
-package com.projectbaby.Project.baby.dto;
+package com.projectbaby.Project.baby.model.dto;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

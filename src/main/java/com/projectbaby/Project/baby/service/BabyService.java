@@ -1,10 +1,12 @@
 package com.projectbaby.Project.baby.service;
 
-import com.projectbaby.Project.baby.model.Baby;
+import com.projectbaby.Project.baby.model.dto.BabyDTO;
+import com.projectbaby.Project.baby.model.entity.Baby;
 import com.projectbaby.Project.baby.repository.BabyRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BabyService {
@@ -15,26 +17,30 @@ public class BabyService {
         this.babyRepository = babyRepository;
     }
 
-    public List<Baby> getAllBabies() {
-        List<Baby> allBabies = babyRepository.findAll();
-        return allBabies;
+    public List<BabyDTO> getAllBabiesDTO() {
+        List<Baby> babies = this.babyRepository.findAll();
+        List<BabyDTO> babiesDTO = babies
+        .stream()
+        .map(this::mapToBabyDTO)
+        .collect(Collectors.toList());
+        return babiesDTO;
     }
 
-    public Baby getBabyById(int id) {
-        Baby babyById = babyRepository
+    public BabyDTO getBabyById(int id) {
+        BabyDTO babyById = babyRepository
                 .findById((long) id)
-                .orElseThrow(() -> new IllegalArgumentException());
+                .orElseThrow(IllegalArgumentException::new);
         return babyById;
     }
 
-    public Baby save(Baby baby) {
+    public BabyDTO save(Baby baby) {
         return babyRepository.save(baby);
     }
 
-    public Baby update(int id, Baby updatedBaby) {
+    public BabyDTO update(int id, Baby updatedBaby) {
         Baby babyById = babyRepository
                 .findById((long) id)
-                .orElseThrow(() -> new IllegalArgumentException());
+                .orElseThrow(IllegalArgumentException::new);
         babyById.setName(updatedBaby.getName());
         babyById.setSex(updatedBaby.getSex());
         babyById.setHeight(updatedBaby.getHeight());
@@ -49,4 +55,27 @@ public class BabyService {
             throw new IllegalArgumentException();
         }
     }
+
+    public BabyDTO mapToBabyDTO(Baby baby) {
+        BabyDTO babyDTO = new BabyDTO();
+        babyDTO.setId(baby.getId());
+        babyDTO.setName(baby.getName());
+        babyDTO.setDateOfBirth(baby.getDateOfBirth());
+        babyDTO.setSex(baby.getSex());
+        babyDTO.setHeight(baby.getHeight());
+        babyDTO.setWeight(baby.getWeight());
+        return babyDTO;
+    }
+
+    public Baby mapToBaby (BabyDTO babyDTO) {
+        Baby baby = new Baby();
+        baby.setId(babyDTO.getId());
+        baby.setName(babyDTO.getName());
+        baby.setDateOfBirth(babyDTO.getDateOfBirth());
+        baby.setSex(babyDTO.getSex());
+        baby.setHeight(babyDTO.getHeight());
+        baby.setWeight(babyDTO.getWeight());
+        return baby;
+    }
 }
+
