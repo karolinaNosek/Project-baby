@@ -1,5 +1,6 @@
 package com.projectbaby.Project.baby.service;
 
+import com.projectbaby.Project.baby.mapper.BabyMapper;
 import com.projectbaby.Project.baby.model.dto.BabyDTO;
 import com.projectbaby.Project.baby.model.entity.Baby;
 import com.projectbaby.Project.baby.repository.BabyRepository;
@@ -12,11 +13,12 @@ import java.util.stream.Collectors;
 public class BabyService {
 
     private BabyRepository babyRepository;
+    private BabyMapper babyMapper;
 
     public BabyService(BabyRepository babyRepository) {
         this.babyRepository = babyRepository;
     }
-
+    public BabyService(BabyMapper babyMapper) { this.babyMapper = babyMapper; }
     public List<BabyDTO> getAllBabiesDTO() {
         List<Baby> babies = this.babyRepository.findAll();
         List<BabyDTO> babiesDTO = babies
@@ -26,26 +28,34 @@ public class BabyService {
         return babiesDTO;
     }
 
-    public BabyDTO getBabyById(int id) {
-        BabyDTO babyById = babyRepository
-                .findById((long) id)
-                .orElseThrow(IllegalArgumentException::new);
-        return babyById;
-    }
-
-    public BabyDTO save(Baby baby) {
-        return babyRepository.save(baby);
-    }
-
-    public BabyDTO update(int id, Baby updatedBaby) {
+    public BabyDTO getBabyById(Integer id) {
         Baby babyById = babyRepository
                 .findById((long) id)
                 .orElseThrow(IllegalArgumentException::new);
-        babyById.setName(updatedBaby.getName());
-        babyById.setSex(updatedBaby.getSex());
-        babyById.setHeight(updatedBaby.getHeight());
-        babyById.setWeight(updatedBaby.getWeight());
-        return babyRepository.save(babyById);
+        BabyDTO babyDTO = mapToBabyDTO(babyById);
+        return babyDTO;
+    }
+
+    public BabyDTO save(BabyDTO babyDTO) {
+        Baby baby = mapToBaby(babyDTO);
+        babyRepository.save(baby);
+        BabyDTO babyDTO1 = mapToBabyDTO(baby);
+        return babyDTO1;
+    }
+
+    public BabyDTO update(int id, Baby updatedBabyDTO) {
+        Baby babyById = mapToBaby(updatedBabyDTO);
+        /* jesli chce cos zaktualizowac to najpierw to pobieram */
+        Baby babyById = babyRepository
+                .findById((long) id)
+                .orElseThrow(IllegalArgumentException::new);
+        babyById.setName(updatedBabyDTO.getName());
+        babyById.setSex(updatedBabyDTO.getSex());
+        babyById.setHeight(updatedBabyDTO.getHeight());
+        babyById.setWeight(updatedBabyDTO.getWeight());
+        babyRepository.save(babyById);
+        BabyDTO babyDTO2 = mapToBabyDTO(babyById);
+        return babyDTO2
     }
 
     public void delete(int id) {
@@ -56,26 +66,5 @@ public class BabyService {
         }
     }
 
-    public BabyDTO mapToBabyDTO(Baby baby) {
-        BabyDTO babyDTO = new BabyDTO();
-        babyDTO.setId(baby.getId());
-        babyDTO.setName(baby.getName());
-        babyDTO.setDateOfBirth(baby.getDateOfBirth());
-        babyDTO.setSex(baby.getSex());
-        babyDTO.setHeight(baby.getHeight());
-        babyDTO.setWeight(baby.getWeight());
-        return babyDTO;
-    }
-
-    public Baby mapToBaby (BabyDTO babyDTO) {
-        Baby baby = new Baby();
-        baby.setId(babyDTO.getId());
-        baby.setName(babyDTO.getName());
-        baby.setDateOfBirth(babyDTO.getDateOfBirth());
-        baby.setSex(babyDTO.getSex());
-        baby.setHeight(babyDTO.getHeight());
-        baby.setWeight(babyDTO.getWeight());
-        return baby;
-    }
 }
 

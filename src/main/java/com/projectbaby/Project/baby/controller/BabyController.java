@@ -21,12 +21,12 @@ public class BabyController {
     }
 
     @GetMapping
-    public ResponseEntity<List> getAllBabiesDTO() {
+    public ResponseEntity<List<BabyDTO>> getAllBabiesDTO() {
         return ResponseEntity.ok(babyService.getAllBabiesDTO());
     }
     @PostMapping
     public ResponseEntity<BabyDTO> createBaby(@RequestBody BabyDTO babyDTO) {
-        return ResponseEntity.ok(babyService.save(BabyDTO));
+        return ResponseEntity.ok(babyService.save(babyDTO));
     }
     @GetMapping("/{id}")
     public ResponseEntity<BabyDTO> getBabyById (@PathVariable(value = "id") int id) {
@@ -34,8 +34,8 @@ public class BabyController {
     }
 
     @PutMapping ("/{id}")
-    public ResponseEntity<BabyDTO> update(@PathVariable(value = "id") int id, @RequestBody Baby updatedBaby){
-        return ResponseEntity.ok(babyService.update(id, updatedBaby));
+    public ResponseEntity<BabyDTO> update(@PathVariable(value = "id") int id, @RequestBody Baby updatedBabyDTO) /* przekazuje obiekt typu Baby o nazwie updatedbabydto*/{
+        return ResponseEntity.ok(babyService.update(id, updatedBabyDTO));
     }
 
     @DeleteMapping ("/{id}")
