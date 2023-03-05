@@ -4,6 +4,7 @@ import com.projectbaby.Project.baby.mapper.BabyMapper;
 import com.projectbaby.Project.baby.model.dto.BabyDTO;
 import com.projectbaby.Project.baby.model.entity.Baby;
 import com.projectbaby.Project.baby.repository.BabyRepository;
+import com.projectbaby.Project.baby.service.Exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,10 +29,10 @@ public class BabyService {
         return babiesDTO;
     }
 
-    public BabyDTO getBabyById(Integer id) {
+    public BabyDTO getBabyById(Integer id) throws ResourceNotFoundException{
         Baby babyById = babyRepository
                 .findById((long) id)
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(new ResourceNotFoundException("Baby not found for this id: " + id ));
         BabyDTO babyDTO = mapToBabyDTO(babyById);
         return babyDTO;
     }
@@ -43,12 +44,12 @@ public class BabyService {
         return babyDTO1;
     }
 
-    public BabyDTO update(int id, Baby updatedBabyDTO) {
+    public BabyDTO update(int id, Baby updatedBabyDTO) throws ResourceNotFoundException {
         Baby babyById = mapToBaby(updatedBabyDTO);
         /* jesli chce cos zaktualizowac to najpierw to pobieram */
         Baby babyById = babyRepository
                 .findById((long) id)
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(new ResourceNotFoundException("Baby not found for this id: " + id ));
         babyById.setName(updatedBabyDTO.getName());
         babyById.setSex(updatedBabyDTO.getSex());
         babyById.setHeight(updatedBabyDTO.getHeight());
