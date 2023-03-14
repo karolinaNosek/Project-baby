@@ -1,5 +1,6 @@
 package com.projectbaby.Project.baby.controller;
 
+import com.projectbaby.Project.baby.model.dto.UserDTO;
 import com.projectbaby.Project.baby.model.entity.User;
 import com.projectbaby.Project.baby.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +21,13 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public ResponseEntity<List> getUsers() {
-        return ResponseEntity.ok(userService.getUsers());
+    public ResponseEntity<List<UserDTO>> getUsersDTO() {
+        return ResponseEntity.ok(userService.getUsersDTO());
     }
 
     @PostMapping("/users")
-    public ResponseEntity createUser (@RequestBody User user) {
-        return ResponseEntity.ok(userService.save(user));
+    public ResponseEntity<UserDTO> createUserDTO (@RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(userService.save(userDTO));
     }
 
 }

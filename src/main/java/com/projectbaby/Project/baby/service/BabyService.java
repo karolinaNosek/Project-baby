@@ -4,7 +4,7 @@ import com.projectbaby.Project.baby.mapper.BabyMapper;
 import com.projectbaby.Project.baby.model.dto.BabyDTO;
 import com.projectbaby.Project.baby.model.entity.Baby;
 import com.projectbaby.Project.baby.repository.BabyRepository;
-import com.projectbaby.Project.baby.service.Exception.ResourceNotFoundException;
+import com.projectbaby.Project.baby.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,10 +16,10 @@ public class BabyService {
     private BabyRepository babyRepository;
     private BabyMapper babyMapper;
 
-    public BabyService(BabyRepository babyRepository) {
+    public BabyService(BabyRepository babyRepository, BabyMapper babyMapper) {
         this.babyRepository = babyRepository;
+        this.babyMapper = babyMapper;
     }
-    public BabyService(BabyMapper babyMapper) { this.babyMapper = babyMapper; }
     public List<BabyDTO> getAllBabiesDTO() {
         List<Baby> babies = this.babyRepository.findAll();
         List<BabyDTO> babiesDTO = babies
@@ -38,14 +38,14 @@ public class BabyService {
     }
 
     public BabyDTO save(BabyDTO babyDTO) {
-        Baby baby = mapToBaby(babyDTO);
+        Baby baby = babyMapper.mapToBaby(babyDTO);
         babyRepository.save(baby);
-        BabyDTO babyDTO1 = mapToBabyDTO(baby);
+        BabyDTO babyDTO1 = babyMapper.mapToBabyDTO(baby);
         return babyDTO1;
     }
 
     public BabyDTO update(int id, Baby updatedBabyDTO) throws ResourceNotFoundException {
-        Baby babyById = mapToBaby(updatedBabyDTO);
+        Baby babyById = babyMapper.mapToBaby(updatedBabyDTO);
         /* jesli chce cos zaktualizowac to najpierw to pobieram */
         Baby babyById = babyRepository
                 .findById((long) id)
@@ -56,7 +56,7 @@ public class BabyService {
         babyById.setWeight(updatedBabyDTO.getWeight());
         babyRepository.save(babyById);
         BabyDTO babyDTO2 = mapToBabyDTO(babyById);
-        return babyDTO2
+        return babyDTO2;
     }
 
     public void delete(int id) {

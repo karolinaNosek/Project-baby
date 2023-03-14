@@ -1,5 +1,6 @@
 package com.projectbaby.Project.baby.controller;
 
+import com.projectbaby.Project.baby.model.dto.activity.ActivityDTO;
 import com.projectbaby.Project.baby.model.entity.activity.Activity;
 import com.projectbaby.Project.baby.service.ActivityService;
 import org.springframework.http.ResponseEntity;
@@ -18,18 +19,18 @@ public class ActivityController {
     }
 
     @GetMapping
-    public ResponseEntity<List> allActivities (){
-        return ResponseEntity.ok(activityService.activities());
+    public ResponseEntity<List<ActivityDTO>> allActivitiesDTO (){
+        return ResponseEntity.ok(activityService.activitiesDTO());
     }
 
     @PostMapping
-    public ResponseEntity<Activity> addActivity (@RequestBody Activity activity) {
-        return ResponseEntity.ok(activityService.save(activity));
+    public ResponseEntity<ActivityDTO> addActivity (@RequestBody ActivityDTO activityDTO) {
+        return ResponseEntity.ok(activityService.save(activityDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Activity> updateActivity (@PathVariable(value = "id") int id, @RequestBody Activity updatedActivity) {
-        return ResponseEntity.ok(activityService.update(id, updatedActivity));
+    public ResponseEntity<ActivityDTO> update (@PathVariable(value = "id") int id, @RequestBody ActivityDTO updatedActivityDTO) {
+        return ResponseEntity.ok(activityService.update(id, updatedActivityDTO));
     }
 
     @DeleteMapping("/{id}")

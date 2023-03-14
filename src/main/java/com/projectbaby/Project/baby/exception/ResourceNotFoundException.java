@@ -1,4 +1,4 @@
-package com.projectbaby.Project.baby.service.Exception;
+package com.projectbaby.Project.baby.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
