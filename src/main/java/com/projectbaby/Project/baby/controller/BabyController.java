@@ -34,7 +34,7 @@ public class BabyController {
     }
 
     @PutMapping ("/{id}")
-    public ResponseEntity<BabyDTO> update(@PathVariable(value = "id") int id, @RequestBody Baby updatedBabyDTO) /* przekazuje obiekt typu Baby o nazwie updatedbabydto*/{
+    public ResponseEntity<BabyDTO> update(@PathVariable(value = "id") int id, @RequestBody BabyDTO updatedBabyDTO) /* przekazuje obiekt typu Baby o nazwie updatedbabydto*/{
         return ResponseEntity.ok(babyService.update(id, updatedBabyDTO));
     }
 

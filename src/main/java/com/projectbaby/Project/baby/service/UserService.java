@@ -24,7 +24,7 @@ public class UserService {
         List<User> users = userRepository.findAll();
         List<UserDTO> usersDTO = users
                 .stream()
-                .map(this::mapToUserDTO)
+                .map(userMapper::mapToUserDTO)
                 .collect(Collectors.toList());
         return usersDTO;
     }
@@ -32,7 +32,7 @@ public class UserService {
     public UserDTO save (UserDTO userDTO) {
         User user = userMapper.mapToUser(userDTO);
         userRepository.save(user);
-        UserDTO userDTO1 = mapToUserDTO (user);
+        UserDTO userDTO1 = userMapper.mapToUserDTO(user);
                 return userDTO1;
 
     }

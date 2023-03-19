@@ -24,16 +24,16 @@ public class BabyService {
         List<Baby> babies = this.babyRepository.findAll();
         List<BabyDTO> babiesDTO = babies
         .stream()
-        .map(this::mapToBabyDTO)
+        .map(babyMapper::mapToBabyDTO)
         .collect(Collectors.toList());
         return babiesDTO;
     }
 
-    public BabyDTO getBabyById(Integer id) throws ResourceNotFoundException{
+    public BabyDTO getBabyById(Integer id) {
         Baby babyById = babyRepository
                 .findById((long) id)
                 .orElseThrow(new ResourceNotFoundException("Baby not found for this id: " + id ));
-        BabyDTO babyDTO = mapToBabyDTO(babyById);
+        BabyDTO babyDTO = babyMapper.mapToBabyDTO(babyById);
         return babyDTO;
     }
 
@@ -44,18 +44,18 @@ public class BabyService {
         return babyDTO1;
     }
 
-    public BabyDTO update(int id, Baby updatedBabyDTO) throws ResourceNotFoundException {
+    public BabyDTO update(int id, BabyDTO updatedBabyDTO) {
         Baby babyById = babyMapper.mapToBaby(updatedBabyDTO);
         /* jesli chce cos zaktualizowac to najpierw to pobieram */
-        Baby babyById = babyRepository
+       babyRepository
                 .findById((long) id)
-                .orElseThrow(new ResourceNotFoundException("Baby not found for this id: " + id ));
+                .orElseThrow(() -> new ResourceNotFoundException("Baby not found for this id: " + id ));
         babyById.setName(updatedBabyDTO.getName());
         babyById.setSex(updatedBabyDTO.getSex());
         babyById.setHeight(updatedBabyDTO.getHeight());
         babyById.setWeight(updatedBabyDTO.getWeight());
         babyRepository.save(babyById);
-        BabyDTO babyDTO2 = mapToBabyDTO(babyById);
+        BabyDTO babyDTO2 = babyMapper.mapToBabyDTO(babyById);
         return babyDTO2;
     }
 
