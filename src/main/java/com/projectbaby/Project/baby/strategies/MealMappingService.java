@@ -26,6 +26,6 @@ public class MealMappingService implements ActivityMappingStrategy {
 
     @Override
     public <T extends Activity> ActivityDTO mapToDTO(T activity) {
-        return mealMapper.mapToMealDTO((Meal) activity);
+        return mealMapper.mapToMealDto((Meal) activity);
     }
 }

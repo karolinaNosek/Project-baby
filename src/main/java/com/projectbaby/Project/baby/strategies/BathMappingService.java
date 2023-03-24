@@ -24,6 +24,6 @@ public class BathMappingService implements ActivityMappingStrategy {
 
     @Override
     public <T extends Activity> ActivityDTO mapToDTO(T activity) {
-        return bathmapper.mapToBathDTO((Bath) activity);
+        return bathmapper.mapToBathDto((Bath) activity);
     }
 }

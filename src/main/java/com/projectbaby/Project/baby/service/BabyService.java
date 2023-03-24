@@ -32,7 +32,7 @@ public class BabyService {
     public BabyDTO getBabyById(Integer id) {
         Baby babyById = babyRepository
                 .findById((long) id)
-                .orElseThrow(new ResourceNotFoundException("Baby not found for this id: " + id ));
+                .orElseThrow(() -> new ResourceNotFoundException("Activity not found for this id: " + id ));
         BabyDTO babyDTO = babyMapper.mapToBabyDTO(babyById);
         return babyDTO;
     }

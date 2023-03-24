@@ -47,7 +47,7 @@ public class ActivityService {
         activityById.setActivityStartTime(updatedActivityDTO.getActivityStartTime());
         activityById.setActivityEndTime(updatedActivityDTO.getActivityEndTime());
         activityRepository.save(activityById);
-        ActivityDTO activityDTO2 = mapToDTO (activityById);
+        ActivityDTO activityDTO2 = activityMappingStrategy.mapToDTO (activityById);
         return activityDTO2;
     }
 

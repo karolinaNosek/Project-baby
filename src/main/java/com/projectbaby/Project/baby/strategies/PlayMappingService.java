@@ -25,6 +25,6 @@ public class PlayMappingService implements ActivityMappingStrategy {
 
     @Override
     public <T extends Activity> ActivityDTO mapToDTO(T activity) {
-        return playMapper.mapToPlayDTO((Play) activity);
+        return playMapper.mapToPlayDto((Play) activity);
     }
 }
