@@ -4,7 +4,7 @@ import com.projectbaby.Project.baby.model.entity.activity.Bath;
 import com.projectbaby.Project.baby.model.dto.activity.BathDTO;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper (componentModel = "spring")
 public interface BathMapper {
     BathDTO mapToBathDto (Bath bath);
     Bath mapToBath (BathDTO bathDTO);

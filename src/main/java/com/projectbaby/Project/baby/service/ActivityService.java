@@ -26,7 +26,7 @@ public class ActivityService {
         List<Activity> allActivities = activityRepository.findAll();
         List<ActivityDTO> activitiesDTO = allActivities
                 .stream()
-                .map(this::mapToDTO)
+                .map(activityMappingStrategy::mapToDTO)
                 .collect(Collectors.toList());
         return activitiesDTO;
     }
