@@ -10,6 +10,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Range;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -26,20 +27,20 @@ public class Baby {
     private Long id;
 
     @Size(min=2, max=30)
-    @NotBlank
+//    @NotBlank
     private String name;
 
-    @JsonFormat(pattern = "MM/DD/YYYY")
+    @JsonFormat(pattern = "yyyy/MM/dd")
     @Past
     private LocalDate dateOfBirth;
 
-    @NotBlank
+//    @NotBlank
     private String sex;
 
-    @Size(min=40, max=150) // height unit is centimeters
+//    @Range(min=40, max=150) // height unit is centimeters
     private int height;
 
-    @Size(min=1000, max=15000) // weight unit is grams
+//    @Range(min=1000, max=15000) // weight unit is grams
     private int weight;
 
     @OneToMany (mappedBy = "baby")

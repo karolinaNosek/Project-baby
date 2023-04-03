@@ -8,6 +8,7 @@ import com.projectbaby.Project.baby.model.entity.activity.Activity;
 import com.projectbaby.Project.baby.model.entity.activity.Bath;
 import com.projectbaby.Project.baby.model.entity.activity.Sleep;
 import org.mapstruct.Mapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,5 +28,16 @@ public class SleepMappingService implements ActivityMappingStrategy {
     @Override
     public <T extends Activity> ActivityDTO mapToDTO(T activity) {
         return sleepMapper.mapToSleepDto((Sleep) activity);
+    }
+
+    @Override
+    public boolean match(Activity activity) {
+
+        return activity instanceof Sleep;
+    }
+
+    @Override
+    public boolean match(ActivityDTO activityDTO) {
+        return activityDTO instanceof SleepDTO;
     }
 }

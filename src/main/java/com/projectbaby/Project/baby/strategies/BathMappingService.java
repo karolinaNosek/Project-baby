@@ -7,6 +7,7 @@ import com.projectbaby.Project.baby.model.dto.activity.BathDTO;
 import com.projectbaby.Project.baby.model.entity.activity.Activity;
 import com.projectbaby.Project.baby.model.entity.activity.Bath;
 import org.mapstruct.Mapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,5 +26,15 @@ public class BathMappingService implements ActivityMappingStrategy {
     @Override
     public <T extends Activity> ActivityDTO mapToDTO(T activity) {
         return bathmapper.mapToBathDto((Bath) activity);
+    }
+
+    @Override
+    public boolean match(Activity activity) {
+        return activity instanceof Bath;
+    }
+
+    @Override
+    public boolean match(ActivityDTO activityDTO) {
+        return activityDTO instanceof BathDTO;
     }
 }

@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -23,17 +24,17 @@ public class BabyDTO {
     @NotBlank
     private String name;
 
-    @JsonFormat(pattern = "MM/DD/YYYY")
+    @JsonFormat(pattern = "yyyy/MM/dd")
     @Past
     private LocalDate dateOfBirth;
 
     @NotBlank
     private String sex;
 
-    @Size(min=40, max=150) // height unit is centimeters
+    @Range(min=40, max=150) // height unit is centimeters
     private int height;
 
-    @Size(min=1000, max=15000) // weight unit is grams
+    @Range(min=1000, max=15000) // weight unit is grams
     private int weight;
 
 }

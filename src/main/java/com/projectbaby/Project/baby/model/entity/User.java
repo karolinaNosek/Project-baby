@@ -17,15 +17,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotBlank
+    //@NotBlank
+    @Pattern(regexp = "a-z")
     private String username;
 
     @Email
     private String email;
 
-    @NotBlank
-    @Min(value = 6, message = "Password should be at least 6 characters")
-    @Max(value = 12, message = "Password should not be greater than 12 characters")
+//    @NotBlank
+//    @Min(value = 6, message = "Password should be at least 6 characters")
+//    @Max(value = 12, message = "Password should not be greater than 12 characters")
+    @Pattern(regexp = "a-z")
     private String password;
 
     @OneToOne

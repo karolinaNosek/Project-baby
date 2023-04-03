@@ -3,10 +3,7 @@ package com.projectbaby.Project.baby.model.dto;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
@@ -15,15 +12,17 @@ public class UserDTO {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotNull
+    @NotBlank
+    @Pattern(regexp = "a-z")
     private String username;
 
     @Email
-    @NotNull
+    @NotBlank
     private String email;
 
-    @NotNull
-    @Min(value = 6, message = "Password should be at least 6 characters")
-    @Max(value = 12, message = "Password should not be greater than 12 characters")
+    @NotBlank
+    @Pattern(regexp = "a-z")
+//    @Min(value = 6, message = "Password should be at least 6 characters")
+//    @Max(value = 12, message = "Password should not be greater than 12 characters")
     private String password;
 }

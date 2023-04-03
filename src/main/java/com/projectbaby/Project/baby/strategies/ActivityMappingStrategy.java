@@ -6,5 +6,7 @@ import com.projectbaby.Project.baby.model.entity.activity.Activity;
 public interface ActivityMappingStrategy {
   <T extends ActivityDTO> Activity mapToEntity (T activityDTO);
   <T extends  Activity> ActivityDTO mapToDTO (T activity);
+  boolean match(Activity activity);
+  boolean match(ActivityDTO activityDTO);
 
 }
