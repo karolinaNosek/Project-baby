@@ -21,14 +21,14 @@ public class BabyDTO {
     private Long id;
 
     @Size(min=2, max=30)
-    @NotBlank
+//    @NotBlank
     private String name;
 
     @JsonFormat(pattern = "yyyy/MM/dd")
     @Past
     private LocalDate dateOfBirth;
 
-    @NotBlank
+//    @NotBlank
     private String sex;
 
     @Range(min=40, max=150) // height unit is centimeters

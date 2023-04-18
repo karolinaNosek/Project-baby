@@ -18,7 +18,7 @@ public class User {
     private long id;
 
     //@NotBlank
-    @Pattern(regexp = "a-z")
+//    @Pattern(regexp = "a-z")
     private String username;
 
     @Email
@@ -27,7 +27,7 @@ public class User {
 //    @NotBlank
 //    @Min(value = 6, message = "Password should be at least 6 characters")
 //    @Max(value = 12, message = "Password should not be greater than 12 characters")
-    @Pattern(regexp = "a-z")
+//    @Pattern(regexp = "a-z")
     private String password;
 
     @OneToOne
