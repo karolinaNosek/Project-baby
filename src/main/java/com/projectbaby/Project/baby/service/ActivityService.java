@@ -1,13 +1,19 @@
 package com.projectbaby.Project.baby.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.projectbaby.Project.baby.model.dto.activity.ActivityDTO;
+import com.projectbaby.Project.baby.model.dto.activity.MealDTO;
 import com.projectbaby.Project.baby.model.entity.activity.Activity;
+import com.projectbaby.Project.baby.model.entity.activity.Meal;
 import com.projectbaby.Project.baby.repository.ActivityRepository;
 import com.projectbaby.Project.baby.exception.ResourceNotFoundException;
 import com.projectbaby.Project.baby.strategies.ActivityMappingStrategy;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -36,7 +42,7 @@ public class ActivityService {
         return activityDTOS;
     }
 
-    public ActivityDTO save(ActivityDTO activityDTO) {
+    public ActivityDTO save(ActivityDTO activityDTO) throws JsonProcessingException {
         final Activity activity = matchStrategy(activityDTO).mapToEntity(activityDTO);
 
         final Activity savedActivity = activityRepository.save(activity);
@@ -45,7 +51,7 @@ public class ActivityService {
         return savedActivityDTO;
     }
 
-    public ActivityDTO update(int id, ActivityDTO updatedActivityDTO) {
+    public ActivityDTO update(int id, ActivityDTO updatedActivityDTO) throws JsonProcessingException {
         final Activity activityById = matchStrategy(updatedActivityDTO).mapToEntity(updatedActivityDTO);
         activityRepository
                 .findById((long) id)
@@ -66,7 +72,7 @@ public class ActivityService {
         }
     }
 
-    private ActivityMappingStrategy matchStrategy(ActivityDTO activityDTO) {
+    private ActivityMappingStrategy matchStrategy(ActivityDTO activityDTO) throws JsonProcessingException {
         return strategies.stream()
                 .filter(strategy -> strategy.match(activityDTO))
                 .findFirst()

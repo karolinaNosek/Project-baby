@@ -1,5 +1,6 @@
 package com.projectbaby.Project.baby.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.projectbaby.Project.baby.model.dto.activity.ActivityDTO;
 import com.projectbaby.Project.baby.model.entity.activity.Activity;
 import com.projectbaby.Project.baby.service.ActivityService;
@@ -24,12 +25,12 @@ public class ActivityController {
     }
 
     @PostMapping
-    public ResponseEntity<ActivityDTO> addActivity (@RequestBody ActivityDTO activityDTO) {
+    public ResponseEntity<ActivityDTO> addActivity (@RequestBody ActivityDTO activityDTO) throws JsonProcessingException {
         return ResponseEntity.ok(activityService.save(activityDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ActivityDTO> update (@PathVariable(value = "id") int id, @RequestBody ActivityDTO updatedActivityDTO) {
+    public ResponseEntity<ActivityDTO> update (@PathVariable(value = "id") int id, @RequestBody ActivityDTO updatedActivityDTO) throws JsonProcessingException {
         return ResponseEntity.ok(activityService.update(id, updatedActivityDTO));
     }
 

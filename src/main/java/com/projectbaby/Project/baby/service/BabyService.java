@@ -46,7 +46,6 @@ public class BabyService {
 
     public BabyDTO update(int id, BabyDTO updatedBabyDTO) {
         Baby babyById = babyMapper.mapToBaby(updatedBabyDTO);
-        /* jesli chce cos zaktualizowac to najpierw to pobieram */
        babyRepository
                 .findById((long) id)
                 .orElseThrow(() -> new ResourceNotFoundException("Baby not found for this id: " + id ));
