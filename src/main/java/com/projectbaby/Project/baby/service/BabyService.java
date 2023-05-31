@@ -39,9 +39,9 @@ public class BabyService {
 
     public BabyDTO save(BabyDTO babyDTO) {
         Baby baby = babyMapper.mapToBaby(babyDTO);
-        babyRepository.save(baby);
-        BabyDTO babyDTO1 = babyMapper.mapToBabyDTO(baby);
-        return babyDTO1;
+        Baby savedBaby = babyRepository.save(baby);
+        BabyDTO savedBabyDTO = babyMapper.mapToBabyDTO(savedBaby);
+        return savedBabyDTO;
     }
 
     public BabyDTO update(int id, BabyDTO updatedBabyDTO) {
@@ -53,9 +53,9 @@ public class BabyService {
         babyById.setSex(updatedBabyDTO.getSex());
         babyById.setHeight(updatedBabyDTO.getHeight());
         babyById.setWeight(updatedBabyDTO.getWeight());
-        babyRepository.save(babyById);
-        BabyDTO babyDTO2 = babyMapper.mapToBabyDTO(babyById);
-        return babyDTO2;
+        Baby savedBaby2 = babyRepository.save(babyById);
+        BabyDTO savedBabyDTO2 = babyMapper.mapToBabyDTO(savedBaby2);
+        return savedBabyDTO2;
     }
 
     public void delete(int id) {
