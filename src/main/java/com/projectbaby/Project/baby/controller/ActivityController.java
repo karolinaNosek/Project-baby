@@ -20,23 +20,23 @@ public class ActivityController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ActivityDTO>> allActivitiesDTO (){
-        return ResponseEntity.ok(activityService.activitiesDTO());
+    public ResponseEntity<List<ActivityDTO>> getAllActivitiesDTO (){
+        return ResponseEntity.ok(activityService.getAllActivitiesDTO());
     }
 
     @PostMapping
-    public ResponseEntity<ActivityDTO> addActivity (@RequestBody ActivityDTO activityDTO) throws JsonProcessingException {
-        return ResponseEntity.ok(activityService.save(activityDTO));
+    public ResponseEntity<ActivityDTO> addActivityDTO (@RequestBody ActivityDTO activityDTO) {
+        return ResponseEntity.ok(activityService.saveActivityDTO(activityDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ActivityDTO> update (@PathVariable(value = "id") int id, @RequestBody ActivityDTO updatedActivityDTO) throws JsonProcessingException {
-        return ResponseEntity.ok(activityService.update(id, updatedActivityDTO));
+    public ResponseEntity<ActivityDTO> updateActivityDTO (@PathVariable(value = "id") Integer id, @RequestBody ActivityDTO updatedActivityDTO)  {
+        return ResponseEntity.ok(activityService.updateActivityDTO(id, updatedActivityDTO));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Activity> deleteActivity (@PathVariable(value = "id") int id) {
-        activityService.delete(id);
+    public ResponseEntity<Activity> deleteActivity (@PathVariable(value = "id") Integer id) {
+        activityService.deleteActivity(id);
         return ResponseEntity.ok().build();
     }
 }

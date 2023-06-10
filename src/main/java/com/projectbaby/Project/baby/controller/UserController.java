@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping ("/api/v1/users")
 public class UserController {
 
     private UserService userService;
@@ -18,28 +19,28 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
-    public ResponseEntity<List<UserDTO>> getUsersDTO() {
+    @GetMapping
+    public ResponseEntity<List<UserDTO>> getAllUsersDTO() {
         return ResponseEntity.ok(userService.getUsersDTO());
     }
 
-    @PostMapping("/users")
+    @PostMapping
     public ResponseEntity<UserDTO> createUserDTO (@RequestBody UserDTO userDTO) {
-        return ResponseEntity.ok(userService.save(userDTO));
+        return ResponseEntity.ok(userService.saveUserDTO(userDTO));
     }
     @GetMapping("/{id}")
-    public ResponseEntity<UserDTO> getUserById (@PathVariable(value = "id") int id) {
-        return ResponseEntity.ok(userService.getUserById(id));
+    public ResponseEntity<UserDTO> getUserDTOById (@PathVariable(value = "id") Integer id) {
+        return ResponseEntity.ok(userService.getUserDTOById(id));
     }
 
     @PutMapping ("/{id}")
-    public ResponseEntity<UserDTO> update(@PathVariable(value = "id") int id, @RequestBody UserDTO updatedUserDTO) {
-        return ResponseEntity.ok(userService.update(id, updatedUserDTO));
+    public ResponseEntity<UserDTO> updateUserDTO (@PathVariable(value = "id") Integer id, @RequestBody UserDTO updatedUserDTO) {
+        return ResponseEntity.ok(userService.updateUserDTO(id, updatedUserDTO));
     }
 
     @DeleteMapping ("/{id}")
-    public ResponseEntity<Void> delete (@PathVariable(value = "id") int id) {
-        userService.delete(id);
+    public ResponseEntity<Void> deleteUser (@PathVariable(value = "id") Integer id) {
+        userService.deleteUser(id);
         return ResponseEntity.ok().build();
     }
 

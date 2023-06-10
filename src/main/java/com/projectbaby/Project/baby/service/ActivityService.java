@@ -23,26 +23,20 @@ import java.util.stream.Collectors;
 public class ActivityService {
 
     private ActivityRepository activityRepository;
-    private Collection<ActivityMappingStrategy> strategies;
+    private Collection<ActivityMappingStrategy> mappingStrategies;
 
-    public ActivityService(ActivityRepository activityRepository, Collection<ActivityMappingStrategy> strategies) {
+    public ActivityService(ActivityRepository activityRepository, Collection<ActivityMappingStrategy> mappingStrategies) {
         this.activityRepository = activityRepository;
-        this.strategies = strategies;
+        this.mappingStrategies = mappingStrategies;
     }
 
-    public List<ActivityDTO> activitiesDTO() {
-        List<Activity> allActivities = activityRepository.findAll();
-        List<ActivityDTO> activityDTOS = new ArrayList<>();
-        for (Activity activity: allActivities) {
-            final ActivityMappingStrategy activityMappingStrategy = matchStrategy(activity);
-            final ActivityDTO activityDTO = activityMappingStrategy.mapToDTO(activity);
-            activityDTOS.add(activityDTO);
-        }
-
-        return activityDTOS;
+    public List<ActivityDTO> getAllActivitiesDTO() {
+        return activityRepository.findAll().stream()
+                .map(activity -> matchStrategy(activity).mapToDTO(activity))
+                .collect(Collectors.toList());
     }
 
-    public ActivityDTO save(ActivityDTO activityDTO) throws JsonProcessingException {
+    public ActivityDTO saveActivityDTO (ActivityDTO activityDTO) {
         final Activity activity = matchStrategy(activityDTO).mapToEntity(activityDTO);
 
         final Activity savedActivity = activityRepository.save(activity);
@@ -51,36 +45,35 @@ public class ActivityService {
         return savedActivityDTO;
     }
 
-    public ActivityDTO update(int id, ActivityDTO updatedActivityDTO) throws JsonProcessingException {
-        final Activity activityById = matchStrategy(updatedActivityDTO).mapToEntity(updatedActivityDTO);
-        activityRepository
-                .findById((long) id)
+    public ActivityDTO updateActivityDTO (Integer id, ActivityDTO updatedActivityDTO)  {
+        Activity existingActivity = activityRepository
+                .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Activity not found for this id: " + id ));
-        activityById.setActivityName(updatedActivityDTO.getActivityName());
-        activityById.setActivityStartTime(updatedActivityDTO.getActivityStartTime());
-        activityById.setActivityEndTime(updatedActivityDTO.getActivityEndTime());
-        activityRepository.save(activityById);
-        final ActivityDTO activityDTO2 = matchStrategy(activityById).mapToDTO(activityById);
-        return activityDTO2;
+        existingActivity.setActivityName(updatedActivityDTO.getActivityName());
+        existingActivity.setActivityStartTime(updatedActivityDTO.getActivityStartTime());
+        existingActivity.setActivityEndTime(updatedActivityDTO.getActivityEndTime());
+        activityRepository.save(existingActivity);
+        final ActivityDTO existingActivityDTO = matchStrategy(existingActivity).mapToDTO(existingActivity);
+        return existingActivityDTO;
     }
 
-    public void delete(int id) {
-        if (activityRepository.existsById((long) id)) {
-            activityRepository.deleteById((long) id);
+    public void deleteActivity (Integer id) {
+        if (activityRepository.existsById(id)) {
+            activityRepository.deleteById(id);
         } else {
             throw new IllegalArgumentException();
         }
     }
 
-    private ActivityMappingStrategy matchStrategy(ActivityDTO activityDTO) throws JsonProcessingException {
-        return strategies.stream()
+    private ActivityMappingStrategy matchStrategy(ActivityDTO activityDTO) {
+        return mappingStrategies.stream()
                 .filter(strategy -> strategy.match(activityDTO))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Unable to chose mapping strategy for given type"));
     }
 
     private ActivityMappingStrategy matchStrategy(Activity activity) {
-        return strategies.stream()
+        return mappingStrategies.stream()
                 .filter(strategy -> strategy.match(activity))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Unable to chose mapping strategy for given type"));

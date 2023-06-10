@@ -29,38 +29,37 @@ public class BabyService {
         return babiesDTO;
     }
 
-    public BabyDTO getBabyById(Integer id) {
+    public BabyDTO getBabyDTOById(Integer id) {
         Baby babyById = babyRepository
-                .findById((long) id)
+                .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Activity not found for this id: " + id ));
         BabyDTO babyDTO = babyMapper.mapToBabyDTO(babyById);
         return babyDTO;
     }
 
-    public BabyDTO save(BabyDTO babyDTO) {
+    public BabyDTO saveBabyDTO (BabyDTO babyDTO) {
         Baby baby = babyMapper.mapToBaby(babyDTO);
         Baby savedBaby = babyRepository.save(baby);
         BabyDTO savedBabyDTO = babyMapper.mapToBabyDTO(savedBaby);
         return savedBabyDTO;
     }
 
-    public BabyDTO update(int id, BabyDTO updatedBabyDTO) {
-        Baby babyById = babyMapper.mapToBaby(updatedBabyDTO);
-       babyRepository
-                .findById((long) id)
+    public BabyDTO updateBabyDTO (Integer id, BabyDTO updatedBabyDTO) {
+       Baby existingBaby = babyRepository
+                .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Baby not found for this id: " + id ));
-        babyById.setName(updatedBabyDTO.getName());
-        babyById.setSex(updatedBabyDTO.getSex());
-        babyById.setHeight(updatedBabyDTO.getHeight());
-        babyById.setWeight(updatedBabyDTO.getWeight());
-        Baby savedBaby2 = babyRepository.save(babyById);
-        BabyDTO savedBabyDTO2 = babyMapper.mapToBabyDTO(savedBaby2);
-        return savedBabyDTO2;
+        existingBaby.setName(updatedBabyDTO.getName());
+        existingBaby.setSex(updatedBabyDTO.getSex());
+        existingBaby.setHeightInCentimeters(updatedBabyDTO.getHeightInCentimeters());
+        existingBaby.setWeightInGrams(updatedBabyDTO.getWeightInGrams());
+        babyRepository.save(existingBaby);
+        BabyDTO existingBabyDTO = babyMapper.mapToBabyDTO(existingBaby);
+        return existingBabyDTO;
     }
 
-    public void delete(int id) {
-        if (babyRepository.existsById((long) id)) {
-            babyRepository.deleteById((long) id);
+    public void deleteBaby (Integer id) {
+        if (babyRepository.existsById(id)) {
+            babyRepository.deleteById(id);
         } else {
             throw new IllegalArgumentException();
         }

@@ -11,7 +11,7 @@ import lombok.Data;
 public class UserDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Integer id;
 
     private String username;
 

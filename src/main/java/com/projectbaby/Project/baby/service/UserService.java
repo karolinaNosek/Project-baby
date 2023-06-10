@@ -31,37 +31,36 @@ public class UserService {
                 .collect(Collectors.toList());
         return usersDTO;
     }
-    public UserDTO getUserById(Integer id) {
+    public UserDTO getUserDTOById(Integer id) {
         User userById = userRepository
-                .findById((long) id)
+                .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Activity not found for this id: " + id ));
         UserDTO userDTO = userMapper.mapToUserDTO(userById);
         return userDTO;
     }
 
-    public UserDTO save (UserDTO userDTO) {
+    public UserDTO saveUserDTO (UserDTO userDTO) {
         User user = userMapper.mapToUser(userDTO);
         userRepository.save(user);
         UserDTO userDTO1 = userMapper.mapToUserDTO(user);
                 return userDTO1;
     }
 
-    public UserDTO update(int id, UserDTO updatedUserDTO) {
-        User userById = userMapper.mapToUser(updatedUserDTO);
-        userRepository
-                .findById((long) id)
+    public UserDTO updateUserDTO (Integer id, UserDTO updatedUserDTO) {
+        User existingUser = userRepository
+                .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Baby not found for this id: " + id ));
-        userById.setUsername(updatedUserDTO.getUsername());
-        userById.setEmail(updatedUserDTO.getEmail());
-        userById.setPassword(updatedUserDTO.getPassword());
-        userRepository.save(userById);
-        UserDTO userDTO2 = userMapper.mapToUserDTO(userById);
-        return userDTO2;
+        existingUser.setUsername(updatedUserDTO.getUsername());
+        existingUser.setEmail(updatedUserDTO.getEmail());
+        existingUser.setPassword(updatedUserDTO.getPassword());
+        userRepository.save(existingUser);
+        UserDTO existingUserDTO = userMapper.mapToUserDTO(existingUser);
+        return existingUserDTO;
     }
 
-    public void delete(int id) {
-        if (userRepository.existsById((long) id)) {
-            userRepository.deleteById((long) id);
+    public void deleteUser (Integer id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
         } else {
             throw new IllegalArgumentException();
         }

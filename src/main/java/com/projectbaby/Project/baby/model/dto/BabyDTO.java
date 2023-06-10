@@ -25,7 +25,7 @@ import java.util.List;
 public class BabyDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
     @Size(min=2, max=30)
     private String name;
@@ -36,11 +36,11 @@ public class BabyDTO {
 
     private String sex;
 
-    @Range(min=40, max=150) // height unit is centimeters
-    private int height;
+    @Range(min=40, max=150)
+    private int heightInCentimeters;
 
-    @Range(min=1000, max=15000) // weight unit is grams
-    private int weight;
+    @Range(min=1000, max=15000)
+    private int weightInGrams;
 
     private List<Activity> activities;
 

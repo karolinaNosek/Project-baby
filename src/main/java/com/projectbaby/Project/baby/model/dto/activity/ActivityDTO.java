@@ -21,7 +21,7 @@ import java.time.LocalTime;
         @JsonSubTypes.Type(value = WalkDTO.class, name = "walk")
 })
 public class ActivityDTO {
-    private Long id;
+    private Integer id;
     private String activityName;
     private LocalTime activityStartTime;
     private LocalTime activityEndTime;
