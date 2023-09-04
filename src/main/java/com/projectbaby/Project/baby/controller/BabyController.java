@@ -21,21 +21,21 @@ public class BabyController {
     }
 
     @GetMapping
-    public ResponseEntity<List<BabyDTO>> getAllBabiesDTO() {
-        return ResponseEntity.ok(babyService.getAllBabiesDTO());
+    public ResponseEntity<List<BabyDTO>> getAllBabies() {
+        return ResponseEntity.ok(babyService.getAllBabies());
     }
     @PostMapping
-    public ResponseEntity<BabyDTO> createBabyDTO(@RequestBody BabyDTO babyDTO) {
-        return ResponseEntity.ok(babyService.saveBabyDTO(babyDTO));
+    public ResponseEntity<BabyDTO> createBaby(@RequestBody BabyDTO babyDTO) {
+        return ResponseEntity.ok(babyService.saveBaby(babyDTO));
     }
     @GetMapping("/{id}")
-    public ResponseEntity<BabyDTO> getBabyDTOById (@PathVariable(value = "id") Integer id) {
-        return ResponseEntity.ok(babyService.getBabyDTOById(id));
+    public ResponseEntity<BabyDTO> getBabyById (@PathVariable(value = "id") Integer id) {
+        return ResponseEntity.ok(babyService.getBabyById(id));
     }
 
     @PutMapping ("/{id}")
-    public ResponseEntity<BabyDTO> updateBabyDTO (@PathVariable(value = "id") Integer id, @RequestBody BabyDTO updatedBabyDTO) /* przekazuje obiekt typu Baby o nazwie updatedbabydto*/{
-        return ResponseEntity.ok(babyService.updateBabyDTO(id, updatedBabyDTO));
+    public ResponseEntity<BabyDTO> updateBaby (@PathVariable(value = "id") Integer id, @RequestBody BabyDTO updatedBabyDTO) /* przekazuje obiekt typu Baby o nazwie updatedbabydto*/{
+        return ResponseEntity.ok(babyService.updateBaby(id, updatedBabyDTO));
     }
 
     @DeleteMapping ("/{id}")

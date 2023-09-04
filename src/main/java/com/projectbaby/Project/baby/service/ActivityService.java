@@ -30,13 +30,13 @@ public class ActivityService {
         this.mappingStrategies = mappingStrategies;
     }
 
-    public List<ActivityDTO> getAllActivitiesDTO() {
+    public List<ActivityDTO> getAllActivities() {
         return activityRepository.findAll().stream()
                 .map(activity -> matchStrategy(activity).mapToDTO(activity))
                 .collect(Collectors.toList());
     }
 
-    public ActivityDTO saveActivityDTO (ActivityDTO activityDTO) {
+    public ActivityDTO saveActivity (ActivityDTO activityDTO) {
         final Activity activity = matchStrategy(activityDTO).mapToEntity(activityDTO);
 
         final Activity savedActivity = activityRepository.save(activity);
@@ -45,7 +45,7 @@ public class ActivityService {
         return savedActivityDTO;
     }
 
-    public ActivityDTO updateActivityDTO (Integer id, ActivityDTO updatedActivityDTO)  {
+    public ActivityDTO updateActivity (Integer id, ActivityDTO updatedActivityDTO)  {
         Activity existingActivity = activityRepository
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Activity not found for this id: " + id ));

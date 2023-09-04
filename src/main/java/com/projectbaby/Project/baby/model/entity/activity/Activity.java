@@ -13,6 +13,7 @@ import java.time.LocalTime;
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn (name="ACTIVITY_TYPE", discriminatorType=DiscriminatorType.STRING)
+@Table (name = "activities")
 public abstract class Activity {
 
     @Id

@@ -33,10 +33,8 @@ public class Baby {
 
     private String sex;
 
-    @Range(min=40, max=150)
     private int heightInCentimeters;
 
-    @Range(min=1000, max=15000)
     private int weightInGrams;
 
     @OneToMany (mappedBy = "baby")

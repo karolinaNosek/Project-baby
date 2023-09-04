@@ -23,7 +23,7 @@ public class UserService {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
     }
-    public List<UserDTO> getUsersDTO(){
+    public List<UserDTO> getAllUsers(){
         List<User> users = userRepository.findAll();
         List<UserDTO> usersDTO = users
                 .stream()
@@ -31,7 +31,7 @@ public class UserService {
                 .collect(Collectors.toList());
         return usersDTO;
     }
-    public UserDTO getUserDTOById(Integer id) {
+    public UserDTO getUserById(Integer id) {
         User userById = userRepository
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Activity not found for this id: " + id ));
@@ -39,17 +39,17 @@ public class UserService {
         return userDTO;
     }
 
-    public UserDTO saveUserDTO (UserDTO userDTO) {
+    public UserDTO saveUser (UserDTO userDTO) {
         User user = userMapper.mapToUser(userDTO);
         userRepository.save(user);
         UserDTO userDTO1 = userMapper.mapToUserDTO(user);
                 return userDTO1;
     }
 
-    public UserDTO updateUserDTO (Integer id, UserDTO updatedUserDTO) {
+    public UserDTO updateUser (Integer id, UserDTO updatedUserDTO) {
         User existingUser = userRepository
                 .findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Baby not found for this id: " + id ));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found for this id: " + id ));
         existingUser.setUsername(updatedUserDTO.getUsername());
         existingUser.setEmail(updatedUserDTO.getEmail());
         existingUser.setPassword(updatedUserDTO.getPassword());

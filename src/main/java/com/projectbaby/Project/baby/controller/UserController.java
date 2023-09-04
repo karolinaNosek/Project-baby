@@ -20,22 +20,22 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> getAllUsersDTO() {
-        return ResponseEntity.ok(userService.getUsersDTO());
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
+        return ResponseEntity.ok(userService.getAllUsers());
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> createUserDTO (@RequestBody UserDTO userDTO) {
-        return ResponseEntity.ok(userService.saveUserDTO(userDTO));
+    public ResponseEntity<UserDTO> createUser (@RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(userService.saveUser(userDTO));
     }
     @GetMapping("/{id}")
-    public ResponseEntity<UserDTO> getUserDTOById (@PathVariable(value = "id") Integer id) {
-        return ResponseEntity.ok(userService.getUserDTOById(id));
+    public ResponseEntity<UserDTO> getUserById (@PathVariable(value = "id") Integer id) {
+        return ResponseEntity.ok(userService.getUserById(id));
     }
 
     @PutMapping ("/{id}")
-    public ResponseEntity<UserDTO> updateUserDTO (@PathVariable(value = "id") Integer id, @RequestBody UserDTO updatedUserDTO) {
-        return ResponseEntity.ok(userService.updateUserDTO(id, updatedUserDTO));
+    public ResponseEntity<UserDTO> updateUser (@PathVariable(value = "id") Integer id, @RequestBody UserDTO updatedUserDTO) {
+        return ResponseEntity.ok(userService.updateUser(id, updatedUserDTO));
     }
 
     @DeleteMapping ("/{id}")

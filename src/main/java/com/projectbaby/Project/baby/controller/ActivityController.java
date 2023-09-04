@@ -20,18 +20,18 @@ public class ActivityController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ActivityDTO>> getAllActivitiesDTO (){
-        return ResponseEntity.ok(activityService.getAllActivitiesDTO());
+    public ResponseEntity<List<ActivityDTO>> getAllActivities (){
+        return ResponseEntity.ok(activityService.getAllActivities());
     }
 
     @PostMapping
-    public ResponseEntity<ActivityDTO> addActivityDTO (@RequestBody ActivityDTO activityDTO) {
-        return ResponseEntity.ok(activityService.saveActivityDTO(activityDTO));
+    public ResponseEntity<ActivityDTO> addActivity (@RequestBody ActivityDTO activityDTO) {
+        return ResponseEntity.ok(activityService.saveActivity(activityDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ActivityDTO> updateActivityDTO (@PathVariable(value = "id") Integer id, @RequestBody ActivityDTO updatedActivityDTO)  {
-        return ResponseEntity.ok(activityService.updateActivityDTO(id, updatedActivityDTO));
+    public ResponseEntity<ActivityDTO> updateActivity (@PathVariable(value = "id") Integer id, @RequestBody ActivityDTO updatedActivityDTO)  {
+        return ResponseEntity.ok(activityService.updateActivity(id, updatedActivityDTO));
     }
 
     @DeleteMapping("/{id}")

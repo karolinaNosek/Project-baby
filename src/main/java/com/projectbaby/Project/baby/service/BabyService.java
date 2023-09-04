@@ -20,7 +20,7 @@ public class BabyService {
         this.babyRepository = babyRepository;
         this.babyMapper = babyMapper;
     }
-    public List<BabyDTO> getAllBabiesDTO() {
+    public List<BabyDTO> getAllBabies() {
         List<Baby> babies = this.babyRepository.findAll();
         List<BabyDTO> babiesDTO = babies
         .stream()
@@ -29,7 +29,7 @@ public class BabyService {
         return babiesDTO;
     }
 
-    public BabyDTO getBabyDTOById(Integer id) {
+    public BabyDTO getBabyById(Integer id) {
         Baby babyById = babyRepository
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Activity not found for this id: " + id ));
@@ -37,14 +37,14 @@ public class BabyService {
         return babyDTO;
     }
 
-    public BabyDTO saveBabyDTO (BabyDTO babyDTO) {
+    public BabyDTO saveBaby (BabyDTO babyDTO) {
         Baby baby = babyMapper.mapToBaby(babyDTO);
         Baby savedBaby = babyRepository.save(baby);
         BabyDTO savedBabyDTO = babyMapper.mapToBabyDTO(savedBaby);
         return savedBabyDTO;
     }
 
-    public BabyDTO updateBabyDTO (Integer id, BabyDTO updatedBabyDTO) {
+    public BabyDTO updateBaby (Integer id, BabyDTO updatedBabyDTO) {
        Baby existingBaby = babyRepository
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Baby not found for this id: " + id ));

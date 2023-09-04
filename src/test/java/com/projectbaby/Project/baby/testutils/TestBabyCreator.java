@@ -33,4 +33,10 @@ public class TestBabyCreator {
         throw new ResourceNotFoundException("Baby not found!");
     }
 
+    public static Baby deleteBabyById (Integer id){
+        Baby babyById = new Baby();
+        babyById.setId(id);
+        return babyById;
+    }
+
 }

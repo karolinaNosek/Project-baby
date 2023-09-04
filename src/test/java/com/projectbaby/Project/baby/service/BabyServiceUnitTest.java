@@ -5,12 +5,12 @@ import com.projectbaby.Project.baby.mapper.BabyMapper;
 import com.projectbaby.Project.baby.model.dto.BabyDTO;
 import com.projectbaby.Project.baby.model.entity.Baby;
 import com.projectbaby.Project.baby.repository.BabyRepository;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.projectbaby.Project.baby.testutils.TestBabyCreator;
 
@@ -22,7 +22,8 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 @Import(BabyService.class)
-class BabyServiceTest {
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+class BabyServiceUnitTest {
 
     @MockBean
     private BabyRepository babyRepository;
@@ -33,7 +34,7 @@ class BabyServiceTest {
 
 
     @Test
-    void verifyIfBabiesDTOEquals () {
+    void shouldBabiesEquals () {
 
         //given
         BabyDTO babyDTO = TestBabyCreator.createBabyDTOWithName("Aleks");
@@ -43,14 +44,14 @@ class BabyServiceTest {
         when(babyMapper.mapToBabyDTO(any())).thenReturn(babyDTO);
 
         //when
-        BabyDTO savedBabyDTO = babyService.saveBabyDTO(babyDTO);
+        BabyDTO savedBabyDTO = babyService.saveBaby(babyDTO);
 
         //then
         assertEquals(babyDTO.getName(), savedBabyDTO.getName());
     }
 
     @Test
-    void verifyIfBabyDTO1WasUpdatedByWeight () {
+    void shouldBabyDTO1BeUpdatedByWeight () {
 
        //given
         BabyDTO babyDTO1 = TestBabyCreator.updateBabyDTOByWeight(6500);
@@ -58,21 +59,18 @@ class BabyServiceTest {
         when(babyMapper.mapToBaby(any())).thenReturn(mappedBaby);
         when(babyRepository.save(any())).thenReturn(mappedBaby);
         when(babyMapper.mapToBabyDTO(any())).thenReturn(babyDTO1);
+        when(babyRepository.findById(any())).thenReturn(Optional.of(mappedBaby));
 
         //when
-        BabyDTO updatedBabyDTO = babyService.updateBabyDTO(15, babyDTO1);
+        BabyDTO updatedBabyDTO = babyService.updateBaby(1, babyDTO1);
 
         //then
         assertEquals(babyDTO1.getWeightInGrams(), updatedBabyDTO.getWeightInGrams());
     }
 
-    @Test
-    void verifyIfBabyDTOWasDeletedById (){
-
-    }
 
     @Test
-    void verifyMessage_ResourceNotFoundException () {
+    void shouldReturnMessage_ResourceNotFoundException () {
 
         //given
         String expectedMessage = "Baby not found!";
@@ -87,6 +85,21 @@ class BabyServiceTest {
 
         //then
         assertEquals(expectedMessage, actualMessage);
+
+    }
+
+    @Test
+    void deleteBaby_verifyIfBabyWasDeleted (){
+
+        //given
+        Integer id = 1;
+        when(babyRepository.existsById(id)).thenReturn(true);
+
+        //when
+        babyService.deleteBaby(id);
+
+        //then
+        verify(babyRepository, times(1)).deleteById(id);
 
     }
 }
