@@ -1,4 +1,4 @@
-##**Project baby**
+**Project baby**
 
 Project baby is an application addressed to young parents - it allows you to record every activity of the child during the day in order to create a pattern, routine, so important in the first months of a child's life. 
 
